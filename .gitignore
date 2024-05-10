@@ -1,0 +1,55 @@
+# Archivos generados por el sistema operativo
+*.pyc
+*~
+
+# Directorio de entorno virtual de Python (si usas virtualenv)
+venv/
+env/
+
+# Directorio de dependencias instaladas
+/lib/python3.*/site-packages/
+/lib/python*/site-packages/
+
+# Archivo de configuración local
+local_settings.py
+
+# Archivos de bases de datos SQLite
+*.sqlite3
+
+# Archivos de registro (logs)
+/log/
+/logs/
+
+# Archivos de medios generados (si no usas almacenamiento en la nube)
+/media/
+
+# Archivos estáticos generados
+/staticfiles/
+
+# Carpeta de archivos de respaldo
+/backups/
+
+# Archivo de caché (si estás utilizando caché local)
+__pycache__/
+
+# Directorio de archivos de migración de Django
+/migrations/
+
+# Directorio de compilación de Django
+/__pycache__/
+
+# Archivo de configuración de IDE (por ejemplo, PyCharm)
+.idea/
+
+# Archivos de configuración de texto (por ejemplo, Sublime Text)
+.sublime*
+
+# Archivos de registro de PyCharm
+*.log
+
+# Archivos de base de datos PostgreSQL (si estás usando PostgreSQL)
+*.pg_dump
+*.pg_dump.*
+
+# Carpeta de dependencias de Node.js
+node_modules/

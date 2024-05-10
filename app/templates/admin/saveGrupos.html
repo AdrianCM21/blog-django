@@ -1,0 +1,107 @@
+{% extends 'layout/LayoutAdministrador.html' %} {% block content %}
+<section class="contact-us">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="down-contact">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="sidebar-item contact-form">
+                <div class="sidebar-heading">
+                  <h2>Guardar nuevo grupo</h2>
+                </div>
+                <div class="content">
+                  <form
+                    id="contact"
+                    action="{% url 'addusuarios'  %}"
+                    method="post"
+                  >
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-md-6 col-sm-12">
+                        <fieldset>
+                          <input
+                            style="border: 1px solid #000"
+                            name="nombre"
+                            type="text"
+                            id="nombre"
+                            placeholder="Nombre"
+                          />
+                        </fieldset>
+                      </div>
+                      <div class="col-md-6 col-sm-12">
+                        <fieldset>
+                          <input
+                            style="border: 1px solid #000"
+                            name="usuario"
+                            type="text"
+                            id="usuario"
+                            placeholder="Usuario"
+                          />
+                        </fieldset>
+                      </div>
+                      
+                      <div class="col-md-12 col-sm-12">
+                        <fieldset>
+                          <input
+                            type="password"
+                            style="border: 1px solid #000"
+                            name="password"
+                            id="password"
+                            placeholder="Contraseña"
+                          />
+                        </fieldset>
+                      </div>
+                      <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                          <select
+                            class="form-control"
+                            id="estado"
+                            name="estado"
+                            style="border: 1px solid #000"
+                          >
+                            <option value="">--Selecciona un estado--</option>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                          <select
+                            class="form-control"
+                            name="nivel"
+                            id="nivel"
+                            style="border: 1px solid #000"
+                          >
+                            <option value="">--Selecciona un nivel--</option>
+                            <option value="Admin">Administrador</option>
+                            <option value="Usuario">Usuario</option>
+                            <option value="Escritor">Escritor</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-12">
+                        <fieldset>
+                          <button
+                            type="submit"
+                            id="form-submit"
+                            class="main-button"
+                          >
+                            Añadir usuario
+                          </button>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

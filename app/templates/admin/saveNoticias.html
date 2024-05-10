@@ -1,0 +1,58 @@
+{% extends 'layout/LayoutAdministrador.html' %} {% block content %}
+<section class="contact-us">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="down-contact">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="sidebar-item contact-form">
+                <div class="sidebar-heading">
+                  <h2>Escribir nueva noticia</h2>
+                </div>
+                <div class="content">
+                  <form id="contact" action="{% url 'add_noticias'  %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <fieldset>
+                              {{ form.titulo.errors }}
+                                {{ form.titulo }}
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <fieldset>
+                              {{ form.grupo.error }}
+                                {{ form.grupo }}
+                            </fieldset>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <fieldset>
+                              {{form.contenido.error}}
+                                {{ form.contenido }}
+                            </fieldset>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <fieldset>
+                              {{form.error}}
+                                {{ form.imagen }}
+                            </fieldset>
+                        </div>
+                
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <button type="submit" id="form-submit" class="main-button">Añadir noticia</button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
