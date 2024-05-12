@@ -32,15 +32,15 @@ def addGrupos(request):
         nombre = request.POST.get('grupo')
 
         Grupos.objects.create(grupo=nombre)
-        return redirect('show_grupo')
+        return redirect('show_grupos')
 
-def delete_grupos(request, id):
+def deleteGrupos(request, id):
 
     if request.method == 'POST':
         try:
             usuario = Grupos.objects.get(id=id)
             usuario.delete()
-            return redirect('verusuarios')
+            return redirect('show_grupos')
         except Grupos.DoesNotExist:
             return HttpResponse("Usuario no encontrado")
     else:

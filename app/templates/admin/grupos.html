@@ -14,34 +14,20 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th class="text-center">Usuario</th>
-                        <th class="text-center">Nombre</th>
-                        <th class="text-center">Password</th>
+                        <th class="text-center">Grupo</th>
+      
                         <th class="text-center">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
                       {% for l in lista %}
                       <tr>
-                        <td class="text-center">{{l.usuario}}</td>
-                        <td class="text-center">{{l.nombre}}</td>
-                        <td class="text-center">{{l.password}}</td>
+                        <td class="text-center">{{l.grupo}}</td>
+                        
                         <td class="text-center">
-                          <a
-                            class="btn btn-primary"
-                            style="
-                              background-color: #007bff;
-                              border-color: #007bff;
-                              color: white;
-                              padding: 10px 20px;
-                              text-decoration: none;
-                            "
-                            href="{% url 'editarusuarios' l.id %}"
-                            >Editar</a
-                          >
                           <form
                             method="post"
-                            action="{% url 'delete_user' l.id %}"
+                            action="{% url 'delete_grupos' l.id %}"
                             class="btn"
                           >
                             {% csrf_token %}
@@ -83,8 +69,8 @@
                           padding: 10px 20px;
                           text-decoration: none;
                         "
-                        href="{% url 'addusuarios' %}"
-                        >Agregar usuario</a
+                        href="{% url 'add_grupos' %}"
+                        >Agregar grupo</a
                       >
                     </li>
                   </ul>

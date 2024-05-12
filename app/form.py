@@ -1,7 +1,12 @@
 from django import forms
-from .models import Noticias
+from .models import Noticias, Grupos
 
 class NoticiasForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        grupos = Grupos.objects.all()
+        opciones = [(grupo.id, grupo.grupo) for grupo in grupos]
+        self.fields['grupo'].widget.choices = opciones
     class Meta:
         model = Noticias
         fields = ['titulo', 'contenido', 'imagen', 'grupo', 'autor']

@@ -13,6 +13,7 @@ urlpatterns = [
     path("noticias",noticiasController.showNoticias, name='show_noticias'),
     path("noticias/add",noticiasController.addNoticias, name='add_noticias'),
     path("grupos",gruposController.showGrupos, name='show_grupos'),
-    path("grupos/add",gruposController.addGrupos, name='add_grupos')
+    path("grupos/add",gruposController.addGrupos, name='add_grupos'),
+    path("grupos/delete/<int:id>/", gruposController.deleteGrupos, name="delete_grupos"),
     # path('logout', admin.salir, name='logout'),
 ]

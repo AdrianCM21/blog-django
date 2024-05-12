@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-from ..models import Noticias
+from ..models import Noticias,Usuarios
 from ..form import NoticiasForm
 
 
@@ -10,6 +10,10 @@ def showNoticias(request):
             variable = {}
             variable["request"] = request
             variable["lista"] = response
+            noticias_list = list(response)
+
+            for noticia in noticias_list:
+                print(noticia.__dict__)
             return render(request, "admin/noticias.html", variable)
         else:
             return redirect('login')
@@ -22,6 +26,13 @@ def addNoticias(request):
         if 'nivel_usuario' in request.session:   
             if request.session['nivel_usuario']=='Admin' or request.session['nivel_usuario']=='Escritor':
                 form = NoticiasForm()
+                
+                autor = Usuarios.objects.get(id=request.session['codigo_usuario' ]) 
+                if(not autor):
+                    return redirect('show_noticias')
+
+                form = NoticiasForm(initial={'autor': autor})
+        
                 return render(request,"admin/saveNoticias.html",{"form":form})
             else:
                
@@ -33,12 +44,14 @@ def addNoticias(request):
         if 'nivel_usuario' in request.session:   
             if request.session['nivel_usuario']=='Admin' or request.session['nivel_usuario']=='Escritor':
                 form = NoticiasForm(request.POST,request.FILES)
+                print(form.is_valid())
                 if form.is_valid():
                     form.save()
-                    return redirect('show_noticias') 
-                return redirect('show_noticias')  
+                    return redirect('show_noticias')
+                else:
+                    print(form.errors)
+                return render(request,"admin/saveNoticias.html",{"form":form}) 
             else:
-               
                 return redirect('login')
         else:
              return redirect('login')
