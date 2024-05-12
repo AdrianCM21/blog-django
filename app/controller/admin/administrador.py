@@ -1,13 +1,18 @@
 from django.shortcuts import render, redirect
-from ..models import Usuarios
+from ...models import Usuarios
 
 
 def acceder(request):
     if request.method=='GET':
         if 'codigo_usuario' in request.session:
             variables={}
-            variables['nombre_usuario']= request.session['nombre_usuario']
-            return render(request,'admin/inicioAdmin.html', variables)
+            if request.session['nivel_usuario']=='Usuario':
+                variables['nombre_usuario']= request.session['nombre_usuario']
+                return render(request,'home/inicio.html', variables)
+            else:
+                
+                variables['nombre_usuario']= request.session['nombre_usuario']
+                return render(request,'admin/inicioAdmin.html', variables)
         else:
             
             return render(request,'admin/acceder.html')
@@ -23,7 +28,11 @@ def acceder(request):
                 request.session['nombre_usuario']=verificar_usuario[0].nombre
                 request.session['nivel_usuario']=verificar_usuario[0].nivel
                 variables['nombre_usuario']= request.session['nombre_usuario']
-                return render(request,'admin/usuarios.html', variables)
+                if request.session['nivel_usuario']=='Usuario':
+                     return render(request,'home/inicio.html', variables)
+                else:
+                    
+                    return render(request,'admin/usuarios.html', variables)
             else:
                 variables['m_error']='La contraseña es incorrecta'
                 return render (request, 'admin/acceder.html', variables)

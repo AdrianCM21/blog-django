@@ -26,8 +26,9 @@
                         <td class="text-center">{{l.usuario}}</td>
                         <td class="text-center">{{l.nombre}}</td>
                         <td class="text-center">{{l.password}}</td>
-                        <td class="text-center">
-                          <a
+                        <td class="text-center" style="display: flex;justify-content: center;align-items: center;">
+                          <div>
+                            <a
                             class="btn btn-primary"
                             style="
                               background-color: #007bff;
@@ -37,8 +38,9 @@
                               text-decoration: none;
                             "
                             href="{% url 'editarusuarios' l.id %}"
-                            >Editar</a
-                          >
+                            >Editar</a>
+                          </div>
+                          
                           <form
                             method="post"
                             action="{% url 'delete_user' l.id %}"
@@ -50,8 +52,8 @@
                               value="Eliminar"
                               class="btn btn-warning"
                               style="
-                                background-color: #007bff;
-                                border-color: #007bff;
+                                background-color: hwb(0 11% 29%);
+                                border-color: hwb(0 11% 29%);
                                 color: white;
                                 padding: 10px 20px;
                                 text-decoration: none;

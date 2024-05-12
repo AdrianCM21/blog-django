@@ -22,6 +22,7 @@ class Usuarios(models.Model):
 
 class Noticias(models.Model):
     titulo = models.CharField(max_length=250)
+    subtitulo =models.CharField(max_length=250, default="")
     fecha = models.DateField(auto_now=True)
     contenido = models.CharField(max_length=3000)
     imagen = models.ImageField(upload_to='imagenes',null=True)

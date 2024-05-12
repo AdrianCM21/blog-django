@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-from ..models import Usuarios
+from ...models import Usuarios
 
 
 def usuarios(request):
@@ -34,7 +34,7 @@ def saveUser(request):
         password = request.POST.get('password')
         estado = request.POST.get('estado')
         nivel = request.POST.get('nivel')
-        print(nombre,usuario,password,estado,nivel)
+
         Usuarios.objects.create(nombre=nombre,usuario=usuario,password=password,estado=estado,nivel=nivel)
         return redirect('verusuarios')
 

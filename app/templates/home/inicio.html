@@ -1,4 +1,58 @@
 {% extends "layout/index.html" %} {% block content %}
-<h2>adsfsdgjeoasojbpsggrppipgrp´gsoip</h2>
+<section class="blog-posts grid-system">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="all-blog-posts">
+            <div class="row">
+              {% for l in lista %}
+
+              <div class="col-lg-12">
+                <div class="blog-post">
+                  <div class="blog-thumb">
+                    {% if l.imagen.url %}
+                      <img src="{{l.imagen.url}}" alt="">
+                    {% else %}
+                      <img src="" alt="Imagen no encontrada">
+                    {% endif %}
+                  </div>
+                  <div class="down-content">
+                    <a 
+                    href="{% url 'show_publicacion' l.id %}"
+                    ><span>{{l.titulo}}</span></a>
+                    <a 
+                    href="{% url 'show_publicacion' l.id %}"
+                    >
+                    <h4>{{l.subtitulo}}</h4></a>
+                    <ul class="post-info">
+                      <li><a href="#">{{l.autor.nombre}}</a></li>
+                      <li><a href="#">{{l.fecha}}</a></li>
+                      <li><a href="#">12 Comments</a></li>
+                    </ul>
+                    <p style="height: 150px;overflow: hidden;width: 55vw;">{{l.contenido}}</p>
+                    <div class="post-options">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <ul class="post-tags" style="margin-top: -40px;height: 80px;">
+                            <li><i class="fa fa-tags"></i></li>
+                            <li><p >{{l.grupo.grupo}}</p></li>
+
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+
+              {% include 'layout/paginator.html' %}
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
 
 {% endblock %}

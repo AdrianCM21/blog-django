@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-from ..models import Grupos
+from ...models import Grupos
 
 
 def showGrupos(request):

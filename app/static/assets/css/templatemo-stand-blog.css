@@ -398,15 +398,20 @@ header .navbar {
 /* Blog Posts */
 
 .blog-posts {
-	margin-top: 100px;
+	padding-top: 114px;
 }
 
 .blog-posts .blog-post {
+	display: flex;
 	margin-bottom: 30px;
 }
 
+
+
 .blog-posts .blog-thumb img {
-	width: 100%;
+	
+	width: 300px;
+	height: 300px;
 	overflow: hidden;
 }
 
@@ -1012,6 +1017,12 @@ footer p a:hover {
 	.owl-banner .owl-nav {
 		display: none;
 	}
+	.blog-posts .blog-post {
+		display: flex;
+		margin-bottom: 30px;
+		flex-direction: column;
+	}
+	
 }
 
 @media (max-width: 992px) {

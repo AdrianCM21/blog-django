@@ -5,7 +5,7 @@
       <div class="col-lg-12">
         <div class="down-contact">
           <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-10">
               <div class="sidebar-item contact-information">
                 <div class="sidebar-heading">
                   <h2>contact information</h2>
@@ -17,6 +17,7 @@
                         <th class="text-center">Titulo</th>
                         <th class="text-center">Autor</th>
                         <th class="text-center">Grupo</th>
+                        <th class="text-center">Imagenes</th>
                         <th class="text-center">Acciones</th>
                       </tr>
                     </thead>
@@ -26,8 +27,15 @@
                         <td class="text-center">{{l.titulo}}</td>
                         <td class="text-center">{{l.autor.nombre}}</td>
                         <td class="text-center">{{l.grupo.grupo}}</td>
-                        <!-- <td class="text-center">
-                          <a
+                        {% if l.imagen.url %}
+                          <td class="text-center"><img src="{{l.imagen.url}}" alt="Imagen de la publicacion" height="60px" width="60px"></td>
+                        {% else %}
+                          <td class="text-center"><img src="" alt="Imagen no encontrada"  height="60px" width="60px"></td>
+                        {% endif %}
+
+                        <td class="text-center" style="display: flex;justify-content: center;align-items: center;">
+                          <div>
+                            <a
                             class="btn btn-primary"
                             style="
                               background-color: #007bff;
@@ -36,12 +44,13 @@
                               padding: 10px 20px;
                               text-decoration: none;
                             "
-                            href="{% url 'editarusuarios' l.id %}"
-                            >Editar</a
-                          >
+                            href="{% url 'editar_noticias' l.id %}"
+                            >Editar</a>
+                          </div>
+                          
                           <form
                             method="post"
-                            action="{% url 'delete_user' l.id %}"
+                            action="{% url 'delete_noticias' l.id %}"
                             class="btn"
                           >
                             {% csrf_token %}
@@ -50,14 +59,14 @@
                               value="Eliminar"
                               class="btn btn-warning"
                               style="
-                                background-color: #007bff;
-                                border-color: #007bff;
+                                background-color: hwb(0 11% 29%);
+                                border-color: hwb(0 11% 29%);
                                 color: white;
                                 padding: 10px 20px;
                                 text-decoration: none;
                               "
                             />
-                          </form> -->
+                          </form>
                         </td>
                       </tr>
                       {% endfor %}
@@ -66,14 +75,12 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-2">
               <div class="sidebar-item contact-information">
-                <div class="sidebar-heading">
-                  <h2>contact information</h2>
-                </div>
-                <div class="content">
+    
+                <div class="content" style="margin-top: 40px;">
                   <ul class="list-group">
-                    <li class="list-group-item">
+                    <li >
                       <a
                         class="btn btn-primary text-center"
                         style="

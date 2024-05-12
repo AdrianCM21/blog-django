@@ -1,0 +1,64 @@
+{% extends 'layout/LayoutAdministrador.html' %} {% block content %}
+<section class="contact-us">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="down-contact">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="sidebar-item contact-information">
+                <div class="sidebar-heading">
+                  <h2>contact information</h2>
+                </div>
+                <div class="content">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="text-center">Autor</th>
+                        <th class="text-center">Comentarios</th>
+      
+                        <th class="text-center">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for l in lista %}
+                      <tr>
+                        <td class="text-center">{{l.nombre}}</td>
+                        <td class="text-center">{{l.comentario}}</td>
+                        
+                        <td class="text-center">
+                          <form
+                            method="post"
+                            action="{% url 'delete_grupos' l.id %}"
+                            class="btn"
+                          >
+                            {% csrf_token %}
+                            <input
+                              type="submit"
+                              value="Eliminar"
+                              class="btn btn-warning"
+                              style="
+                                background-color: #007bff;
+                                border-color: #007bff;
+                                color: white;
+                                padding: 10px 20px;
+                                text-decoration: none;
+                              "
+                            />
+                          </form>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

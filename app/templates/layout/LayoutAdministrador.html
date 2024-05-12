@@ -84,27 +84,37 @@ https://templatemo.com/tm-551-stand-blog
               </li>
              
               {% if request.session.nivel_usuario == "Admin" %}
-                 {% if request.path == '/usuarios' %}
+                {% if request.path == '/administrador/usuarios' %}
                   <li class="nav-item active">
-              {% else %}
+                {% else %}
                   <li class="nav-item">
-              {% endif %}
+                {% endif %}
                 <a class="nav-link" href="{% url 'verusuarios' %}">Usuarios</a>
               </li>
               {% endif %}
 
               {% if request.session.nivel_usuario == "Escritor" or request.session.nivel_usuario == "Admin"  %}
-                 {% if request.path == '/noticias' %}
-                <li class="nav-item active">
-            {% else %}
-                <li class="nav-item">
-            {% endif %}
+                {% if request.path == '/administrador/noticias' %}
+                  <li class="nav-item active">
+                {% else %}
+                  <li class="nav-item">
+                {% endif %}
                 <a class="nav-link" href="{% url 'show_noticias' %}">Publicaciones</a>
               </li>
               {% endif %}
 
               {% if request.session.nivel_usuario == "Admin" %}
-                 {% if request.path == '/grupos' %}
+                 {% if request.path == '/administrador/comentarios' %}
+                    <li class="nav-item active">
+                {% else %}
+                    <li class="nav-item">
+                {% endif %}
+                    <a class="nav-link" href="{% url 'show_comentarios' %}">Comentarios</a>
+                  </li>
+              {% endif %}
+
+              {% if request.session.nivel_usuario == "Admin" %}
+                 {% if request.path == '/administrador/grupos' %}
                 <li class="nav-item active">
             {% else %}
                 <li class="nav-item">

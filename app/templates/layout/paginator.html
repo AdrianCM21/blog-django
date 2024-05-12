@@ -1,0 +1,26 @@
+<div class="col-lg-12">
+    <ul class="page-numbers">
+        {% if paginator.num_pages > 1 %}
+            {% if lista.has_previous %}
+                <li><a href="?page={{ lista.previous_page_number }}#pagtable">Anterior</a></li>
+            {% endif %}
+            {% for page in paginator.page_range %}
+                {% if forloop.last and page != lista.number and paginator.num_pages > 7 %} 
+                    {% if lista.next_page_number != paginator.num_pages %}
+                        <li><a href="?page={{ lista.number | add:1}}#pagtable">...</a></li>
+                    {% endif %}
+                    <li><a href="?page={{paginator.num_pages}}#pagtable">{{paginator.num_pages}}</a></li>
+                {% endif %}
+                {% if page == lista.number and page > 7 %}
+                    <li><a href="?page={{ page | add:-1 }}#pagtable">...</a></li>
+                {% endif %}
+                {% if page < 7 or page == lista.number %}
+                    <li {% if page == lista.number %}class="active"{% endif %}><a href="?page={{ page }}#pagtable">{{ page }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if lista.has_next %}
+                <li><a href="?page={{ lista.next_page_number }}#pagtable">Siguiente</a></li>
+            {% endif %}
+        {% endif %}
+    </ul>
+</div>
