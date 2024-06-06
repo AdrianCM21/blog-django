@@ -22,7 +22,8 @@ urlpatterns = [
     path("administrador/grupos",gruposController.showGrupos, name='show_grupos'),
     path("administrador/grupos/add",gruposController.addGrupos, name='add_grupos'),
     path("administrador/grupos/delete/<int:id>/", gruposController.deleteGrupos, name="delete_grupos"),
-    path("administrador/comentarios",comentarioController.showComentarios, name='show_comentarios'),
+    path("administrador/comentarios/<int:id>",comentarioController.showComentarios, name='show_comentarios'),
+    path("administrador/comentarios_ocultar/<int:id>",comentarioController.ocultarComentario, name='ocultar_comentario'),
     # path("administrador/comentarios/add",gruposController.addGrupos, name='add_grupos'),
     # path('logout', admin.salir, name='logout'),
 ]

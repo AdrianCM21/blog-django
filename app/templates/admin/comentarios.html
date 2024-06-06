@@ -1,15 +1,17 @@
 {% extends 'layout/LayoutAdministrador.html' %} {% block content %}
 <section class="contact-us">
   <div class="container">
+    <div class="pt-8" style="padding-top: 8.5rem;
+    margin-bottom: 0em;">
+      <a href="{% url 'show_noticias'  %}" class="btn btn-primary" >Volver atras</a>
+    </div>
+    
     <div class="row">
       <div class="col-lg-12">
         <div class="down-contact">
           <div class="row">
             <div class="col-lg-12">
               <div class="sidebar-item contact-information">
-                <div class="sidebar-heading">
-                  <h2>contact information</h2>
-                </div>
                 <div class="content">
                   <table class="table">
                     <thead>
@@ -27,25 +29,44 @@
                         <td class="text-center">{{l.comentario}}</td>
                         
                         <td class="text-center">
+                         
                           <form
                             method="post"
-                            action="{% url 'delete_grupos' l.id %}"
+                            action="{% url 'ocultar_comentario' l.id %}"
                             class="btn"
                           >
                             {% csrf_token %}
+                            {% if l.visible %}
                             <input
                               type="submit"
-                              value="Eliminar"
+                              value="ocultar"
                               class="btn btn-warning"
                               style="
-                                background-color: #007bff;
-                                border-color: #007bff;
+                                background-color: #ac1f1f;
+                                border-color: #ac1f1f;
                                 color: white;
                                 padding: 10px 20px;
                                 text-decoration: none;
                               "
                             />
+                            {% else %}
+                            <input
+                            type="submit"
+                            value="poner visible"
+                            class="btn btn-warning"
+                            style="
+                              background-color: #0c26b5;
+                              border-color: #0c26b5;
+                              color: white;
+                              padding: 10px 20px;
+                              text-decoration: none;
+                            "
+                          />
+                            {% endif %}
+                            <input type="hidden" name="noticia_id" value="{{ noticia_code }}">
+
                           </form>
+                       
                         </td>
                       </tr>
                       {% endfor %}

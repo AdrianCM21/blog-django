@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect, HttpResponse
+from django.http import JsonResponse
 from ...models import Comentarios,Noticias
 
 
-def showComentarios(request):
+def showComentarios(request,id):
     print(request.session['nivel_usuario'])
     if 'nivel_usuario' in request.session:
         if request.session['nivel_usuario']=='Admin':
-            response = Comentarios.objects.all()
+            response = Comentarios.objects.filter(noticia_id=id)
             variable = {}
             variable["request"] = request
             variable["lista"] = response
+            variable['noticia_code']=id
             return render(request, "admin/comentarios.html", variable)
         else:
             return redirect('login')
@@ -31,16 +33,19 @@ def addComentarios(request):
         Comentarios.objects.create(comentario=comentario,nombre=nombre,noticia=noticia,visible=True)
         
 
-        return HttpResponse('ok')
+        return JsonResponse({'status': 'success'})
 
-def deleteGrupos(request, id):
+def ocultarComentario(request, id):
 
     if request.method == 'POST':
         try:
-            usuario = Comentarios.objects.get(id=id)
-            usuario.delete()
-            return redirect('show_grupos')
+            noticia_id=request.POST.get('noticia_id')
+            comentario = Comentarios.objects.get(id=id)
+            comentario.visible = not comentario.visible
+            comentario.save()
+            
+            return redirect('show_comentarios', id=noticia_id)
         except Comentarios.DoesNotExist:
-            return HttpResponse("Usuario no encontrado")
+             return redirect('show_comentarios', id=noticia_id)
     else:
         return HttpResponse("Método no permitido")

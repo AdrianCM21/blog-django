@@ -24,7 +24,7 @@ def show_publicacion(request, id):
     if 'nivel_usuario' in request.session:
         try:
             publicacion = Noticias.objects.get(id=id)
-            comentarios = Comentarios.objects.filter(noticia_id=id)
+            comentarios = Comentarios.objects.filter(noticia_id=id,visible=True)
             variable = {}
             variable["publicacion"] = publicacion
             variable["comentarios"] = comentarios
