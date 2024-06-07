@@ -6,7 +6,7 @@ from ...models import Comentarios,Noticias
 def showComentarios(request,id):
     print(request.session['nivel_usuario'])
     if 'nivel_usuario' in request.session:
-        if request.session['nivel_usuario']=='Admin':
+        if request.session['nivel_usuario']=='Admin' or request.session['nivel_usuario']=='Escritor':
             response = Comentarios.objects.filter(noticia_id=id)
             variable = {}
             variable["request"] = request
@@ -30,7 +30,7 @@ def addComentarios(request):
             return HttpResponse('Noticia no encontrada')
 
 
-        Comentarios.objects.create(comentario=comentario,nombre=nombre,noticia=noticia,visible=True)
+        Comentarios.objects.create(comentario=comentario,nombre=nombre,noticia=noticia,visible=False)
         
 
         return JsonResponse({'status': 'success'})

@@ -8,7 +8,7 @@ def inicio(request):
         try:
             paginator = Paginator(response,5)
             publicaciones=paginator.page(page)
-            print(publicaciones.count)
+         
         except:
             return HttpResponse("Pagina no encontrada")
         variable = {}

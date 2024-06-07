@@ -41,10 +41,8 @@ def acceder(request):
             return render (request, 'admin/acceder.html', variables)
 
 def salir(request):
-    #request.session['codigo_usuario']=0
-    #request.session['nombre_usuario']=''
-    #request.session['nivel_usuario']=''
+
     del request.session['codigo_usuario']
     del request.session['nombre_usuario']
     del request.session['nivel_usuario'] 
-    return redirect('Admin/login.html')
+    return render(request,'admin/acceder.html')

@@ -2,6 +2,8 @@ from django.urls import path
 
 from .controller.admin import noticiasController, usuarios, administrador as admin,gruposController,comentarioController
 from .controller import inicio
+from .controller.api import login
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path("", inicio.inicio, name="inicio"),
@@ -25,5 +27,8 @@ urlpatterns = [
     path("administrador/comentarios/<int:id>",comentarioController.showComentarios, name='show_comentarios'),
     path("administrador/comentarios_ocultar/<int:id>",comentarioController.ocultarComentario, name='ocultar_comentario'),
     # path("administrador/comentarios/add",gruposController.addGrupos, name='add_grupos'),
-    # path('logout', admin.salir, name='logout'),
+    path('logout', admin.salir, name='logout'),
+
+ 
 ]
+
