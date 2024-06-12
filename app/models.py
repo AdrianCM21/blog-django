@@ -22,10 +22,10 @@ class Usuarios(models.Model):
 
 class Noticias(models.Model):
     titulo = models.CharField(max_length=250)
-    subtitulo =models.CharField(max_length=250, default="")
+    subtitulo = models.CharField(max_length=250, default="")
     fecha = models.DateField(auto_now=True)
     contenido = models.CharField(max_length=3000)
-    imagen = models.ImageField(upload_to='imagenes',null=True)
+    imagen = models.ImageField(upload_to='imagenes', null=True)
     grupo = models.ForeignKey(Grupos, on_delete=models.RESTRICT, null=True)
     autor = models.ForeignKey(Usuarios, on_delete=models.RESTRICT)
 
@@ -34,11 +34,11 @@ class Noticias(models.Model):
 
 
 class Comentarios(models.Model):
-    noticia = models.ForeignKey(Noticias, on_delete=models.RESTRICT)
+    noticia = models.ForeignKey(Noticias, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=250)
     comentario = models.CharField(max_length=3000)
     fecha = models.DateField(auto_now=True)
-    visible = models.BooleanField()
+    visible = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nombre
